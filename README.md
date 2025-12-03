@@ -5,6 +5,12 @@ AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultur
 
 ***The dataset is currently being uploaded and will be available for download shortly!!!***
 
+![](imgs/Flat_LiDAR.gif) 
+
+![](imgs/Hilly_LiDAR.gif) 
+
+![](imgs/Terr_LiDAR.gif)
+ 
 ## Mapping Results
 
 | Scene                 | LiDAR                    | 4D Radar                 |
