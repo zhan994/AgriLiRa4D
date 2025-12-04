@@ -74,6 +74,94 @@ For all sequences except *NJTerrB* and *NJTerrC*, the UAV flew at a constant alt
 |                       | NJTerrC05 | coverage      | 9            | 3           | 313.64          |
 |                       | NJTerrC06 | coverage      | 9            | 6           | 317.48          |
 
+The Radar-LiDAR-Inertial sensor data is provided in ROS bag format. Each bag contains the following topics:
+
+| Sensor   | Module           | Topic Name             | Message Type              | Rate (Hz) |
+| :--------: | :----------------: | :----------------------: | :-------------------------: | :---------: |
+| LiDAR    | Robosense Airy   | /rslidar_points        | sensor_msgs/PointCloud2   | 10        |
+| IMU      | Built-in (LiDAR) | /rslidar_imu_data      | sensor_msgs/IMU           | 200       |
+| 4D Radar | Mindcruise A1    | /radar_points          | sensor_msgs/PointCloud2   | 10        |
+| FINS_RTK | TJ-FINS70D       | /aircraft_pose_enu     | geometry_msgs/PoseStamped | 100       |
+|          |                  | /aircraft_pose_flu     | geometry_msgs/PoseStamped | 100       |
+|          |                  | /aircraft_position_llh | sensor_msgs/NavSatFix     | 100       |
+
+For `/rslidar_points` and `/radar_points`, use custom PCL PointT type:
+
+```cpp
+namespace robosense {
+struct EIGEN_ALIGN16 Point {
+  PCL_ADD_POINT4D;
+  float intensity;
+  std::uint16_t ring = 0;
+  double timestamp = 0;
+  EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+};
+} // namespace robosense
+// clang-format off
+POINT_CLOUD_REGISTER_POINT_STRUCT(robosense::Point,
+    (float, x, x)
+    (float, y, y)
+    (float, z, z)
+    (float, intensity, intensity)
+    (std::uint16_t, ring, ring)
+    (double, timestamp, timestamp)
+)
+
+// clang-format on
+namespace txg_radar
+{
+struct EIGEN_ALIGN16 Point
+{
+  PCL_ADD_POINT4D;      // preferred way of adding a XYZ+padding
+  float v_doppler_mps;  // Doppler velocity in m/s
+  float snr_db;         // Signal-to-noise ratio in dB
+  float rcs;            // Radar cross-section in m^2
+  EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+};
+}  // namespace txg_radar
+// clang-format off
+POINT_CLOUD_REGISTER_POINT_STRUCT(txg_radar::Point,
+    (float, x, x)
+    (float, y, y)
+    (float, z, z)
+    (float, v_doppler_mps, v_doppler_mps)
+    (float, snr_db, snr_db)
+    (float, rcs, rcs)
+)
+
+```
+
+## Ground Truth
+
+ ![](imgs/FLU_ENU.png)
+
+One of the three truth representations (**FLU reference**) is provided in this repository, along with the sensor extrinsic parameters of this acquisition device.
+
+**Note: When performing ground truth analysis, the estimated state must first be gravity-aligned, and then the IMU's odometry must be transformed to the body's odometry based on an FLU reference!!!**
+
+Here is an example about how to convert gravity-aligned IMU's odometry obtained from a LIO/RIO/RLIO system into body's odometry based on an FLU reference.
+
+```cpp
+// FLU to gravity-aligned odom
+M3D R_flu_odom;
+R_flu_odom << 0, 1, 0, 
+              -1, 0, 0, 
+              0, 0, 1;
+V3D t_flu_odom(0.0, 0.0, 0.0);
+
+// body to imu
+M3D R_airbody_imu;
+R_airbody_imu << 0, 0, -1, 
+                1, 0, 0, 
+                0, -1, 0;
+V3D t_airbody_imu(0.0, 0.0, 0.0);
+
+// We can get `R_odom_imu` and `t_odom_imu` through LIO/RIO/RLIO (gravity-aligned)
+M3D R_flu_imu = R_flu_odom * R_odom_imu;
+V3D t_flu_imu = R_flu_odom * t_odom_imu + t_flu_odom;
+M3D R_flu_body = R_flu_imu * R_airbody_imu.transpose();
+V3D t_flu_body = t_flu_imu - R_flu_body * t_airbody_imu;
+```
 
 ## Related Work
 
