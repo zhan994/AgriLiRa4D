@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultural Fields">
+  <meta name="keywords"
+    content="Dataset, Aerial Robots, Multi-Sensor Fusion, Agricultural Fields, Simultaneous Localization and Mapping, 4D Radar, LiDAR, Inertial Measurement Unit.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultural Fields</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    .custome-flex-container {
+      display: flex;
+      justify-content: space-between;
+      /* 等间隔 */
+      align-items: center;
+      /* 垂直居中 */
+      width: 50%;
+      /* 容器宽度 */
+      margin: 0 auto;
+    }
+
+    .custome-flex-item {
+      flex: 1;
+      /* 子元素等比例扩展 */
+      text-align: center;
+      /* 居中内容 */
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://zhan994.github.io/">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in
+              Challenging Agricultural Fields</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Zhihao Zhan<sup>1</sup>,</span>
+              <span class="author-block">
+                Yuhang Ming<sup>2&dagger;</sup>,</span>
+              <span class="author-block">
+                Shaobin Li<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Jie Yuan<sup>3&dagger;</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>TopXGun Robotics, </span>
+              <span class="author-block"><sup>2</sup>Hangzhou Dianzi University, </span>
+              <span class="author-block"><sup>3</sup>Nanjing University </span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <!-- <span class="author-block"><sup>*</sup>Equal contribution</span> -->
+              <span class="author-block"><sup>&dagger;</sup>Corresponding author</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2512.01753.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2512.01753" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/zhan994/AgriLiRa4D"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- GIF Gallery -->
+  <section class="section">
+    <div class="container is-widescreen">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <!-- Scene Headers -->
+          <div style="display: flex; margin-bottom: 1rem; align-items: center;">
+            <div style="width: 80px; flex-shrink: 0;"></div>
+            <div style="flex: 1; display: flex; justify-content: space-around;">
+              <h4 class="title is-5" style="flex: 1; margin: 0;">Flat Farmland</h4>
+              <h4 class="title is-5" style="flex: 1; margin: 0;">Hilly Farmland</h4>
+              <h4 class="title is-5" style="flex: 1; margin: 0;">Terraced Farmland</h4>
+            </div>
+          </div>
+
+          <!-- GIF Grid with Row Headers -->
+          <div style="display: flex; align-items: stretch;">
+            <!-- Row Headers Container -->
+            <div
+              style="display: flex; flex-direction: column; justify-content: space-around; width: 80px; flex-shrink: 0;">
+              <div style="display: flex; align-items: center; justify-content: center; flex: 1;">
+                <h4 class="title is-5" style="writing-mode: vertical-rl; transform: rotate(180deg); margin: 0;">LiDAR
+                </h4>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center; flex: 1;">
+                <h4 class="title is-5" style="writing-mode: vertical-rl; transform: rotate(180deg); margin: 0;">4D Radar
+                </h4>
+              </div>
+            </div>
+
+            <!-- GIF Grid -->
+            <div style="flex: 1;">
+              <div class="columns is-multiline" style="margin: 0;">
+                <!-- Row 1: LiDAR -->
+                <div class="column is-one-third">
+                  <img src="./imgs/Flat_LiDAR.gif" alt="Flat Farmland LiDAR" style="width: 100%;">
+                </div>
+                <div class="column is-one-third">
+                  <img src="./imgs/Hilly_LiDAR.gif" alt="Hilly Farmland LiDAR" style="width: 100%;">
+                </div>
+                <div class="column is-one-third">
+                  <img src="./imgs/Terr_LiDAR.gif" alt="Terraced Farmland LiDAR" style="width: 100%;">
+                </div>
+
+                <!-- Row 2: 4D Radar -->
+                <div class="column is-one-third">
+                  <img src="./imgs/Flat_Radar.gif" alt="Flat Farmland 4D Radar" style="width: 100%;">
+                </div>
+                <div class="column is-one-third">
+                  <img src="./imgs/Hilly_Radar.gif" alt="Hilly Farmland 4D Radar" style="width: 100%;">
+                </div>
+                <div class="column is-one-third">
+                  <img src="./imgs/Terr_Radar.gif" alt="Terraced Farmland 4D Radar" style="width: 100%;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Abstract -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Multi-sensor Simultaneous Localization and Mapping (SLAM) is essential for Unmanned Aerial Vehicles (UAVs)
+              performing agricultural tasks such as spraying, surveying, and inspection. However, real-world,
+              multi-modal agricultural UAV datasets that enable research on robust operation remain scarce. To address
+              this gap, we present AgriLiRa4D, a multi-modal UAV dataset designed for challenging outdoor agricultural
+              environments. AgriLiRa4D spans three representative farmland types—flat, hilly, and terraced—and includes
+              both boundary and coverage operation modes, resulting in six flight sequence groups. The dataset provides
+              high-accuracy ground-truth trajectories from a Fiber Optic Inertial Navigation System with Real-Time
+              Kinematic capability (FINS_RTK), along with synchronized measurements from a 3D LiDAR, a 4D Radar, and an
+              Inertial Measurement Unit (IMU), accompanied by complete intrinsic and extrinsic calibrations.
+              Leveraging its comprehensive sensor suite and diverse real-world scenarios, AgriLiRa4D supports diverse
+              SLAM and localization studies and enables rigorous robustness evaluation against low-texture crops,
+              repetitive patterns, dynamic vegetation, and other challenges of real agricultural environments. To
+              further demonstrate its utility, we benchmark four state-of-the-art multi-sensor SLAM algorithms across
+              different sensor combinations, highlighting the difficulty of the proposed sequences and the necessity of
+              multi-modal approaches for reliable UAV localization.
+              By filling a critical gap in agricultural SLAM datasets, AgriLiRa4D provides a valuable benchmark for the
+              research community and contributes to advancing autonomous navigation technologies for agricultural UAVs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Dataset -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Dataset</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+
+          <div class="content has-text-justified">
+            <p>
+              The 33 sequences of our dataset were collected across three representative farmland terrains—flat plains,
+              hilly regions, and mountainous terraces—located in Nanjing, China. The dataset is organized into six
+              sequence groups based on terrain type and scanning mode (<span
+                style="color: #1976d2; font-weight: bold;">boundary</span> or <span
+                style="color: #d32f2f; font-weight: bold;">coverage</span>), namely NJFlatB, NJFlatC,
+              NJHillB, NJHillC, NJTerrB, and NJTerrC.
+              <br>
+              For all sequences except NJTerrB and NJTerrC, the UAV flew at a constant altitude with respect to the
+              take-off point. In contrast, for the mountainous-terrain sequences NJTerrB and NJTerrC, the UAV maintained
+              a fixed height Above Ground Level (AGL) to ensure flight safety and stable sensor coverage over rapidly
+              varying elevation. Multiple combinations of flight altitudes and speeds were employed to introduce
+              different levels of SLAM difficulty. Each sequence additionally begins with a short stationary or hovering
+              segment to facilitate IMU initialization.
+            </p>
+          </div>
+
+          <!-- Scene and Flight Path Images -->
+          <div style="margin-top: 2rem; margin-bottom: 3rem;">
+            <!-- Column Headers -->
+            <div class="columns" style="margin-bottom: 0.5rem;">
+              <div class="column is-one-third has-text-centered">
+                <h5 class="title is-6" style="margin-bottom: 1rem;"><strong>Flat Farmland</strong></h5>
+              </div>
+              <div class="column is-one-third has-text-centered">
+                <h5 class="title is-6" style="margin-bottom: 1rem;"><strong>Hilly Farmland</strong></h5>
+              </div>
+              <div class="column is-one-third has-text-centered">
+                <h5 class="title is-6" style="margin-bottom: 1rem;"><strong>Terraced Farmland</strong></h5>
+              </div>
+            </div>
+
+            <!-- Row 1: Scene Images -->
+            <div class="columns is-multiline" style="margin-bottom: 0;">
+              <div class="column is-one-third">
+                <figure class="image">
+                  <img src="./imgs/Farmland_Flat.jpg" alt="Flat Farmland Scene">
+                </figure>
+              </div>
+              <div class="column is-one-third">
+                <figure class="image">
+                  <img src="./imgs/Farmland_Hilly.jpg" alt="Hilly Farmland Scene">
+                </figure>
+              </div>
+              <div class="column is-one-third">
+                <figure class="image">
+                  <img src="./imgs/Farmland_Terraced.jpg" alt="Terraced Farmland Scene">
+                </figure>
+              </div>
+            </div>
+
+            <!-- Row 2: Flight Path Images -->
+            <div class="columns is-multiline">
+              <div class="column is-one-third">
+                <figure class="image">
+                  <img src="./imgs/Flat_Path.jpg" alt="Flat Farmland Flight Path">
+                </figure>
+              </div>
+              <div class="column is-one-third">
+                <figure class="image">
+                  <img src="./imgs/Hilly_Path.png" alt="Hilly Farmland Flight Path">
+                </figure>
+              </div>
+              <div class="column is-one-third">
+                <figure class="image">
+                  <img src="./imgs/Terr_Path.png" alt="Terraced Farmland Flight Path">
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dataset Sequence Table -->
+          <div class="content">
+            <table class="table is-striped is-hoverable is-fullwidth is-bordered">
+              <thead>
+                <tr>
+                  <th>Scene</th>
+                  <th>Sequence</th>
+                  <th>Scanning Mode</th>
+                  <th>Altitude (m)</th>
+                  <th>Speed (m/s)</th>
+                  <th>Path Length (m)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Flat Farmland -->
+                <tr>
+                  <td rowspan="10"><strong>Flat Farmland</strong></td>
+                  <td>NJFlatB01</td>
+                  <td>Boundary</td>
+                  <td>5</td>
+                  <td>3</td>
+                  <td>434.77</td>
+                </tr>
+                <tr>
+                  <td>NJFlatB02</td>
+                  <td>Boundary</td>
+                  <td>5</td>
+                  <td>8</td>
+                  <td>464.21</td>
+                </tr>
+                <tr>
+                  <td>NJFlatB03</td>
+                  <td>Boundary</td>
+                  <td>10</td>
+                  <td>3</td>
+                  <td>456.32</td>
+                </tr>
+                <tr>
+                  <td>NJFlatB04</td>
+                  <td>Boundary</td>
+                  <td>10</td>
+                  <td>8</td>
+                  <td>462.18</td>
+                </tr>
+                <tr>
+                  <td>NJFlatB05</td>
+                  <td>Boundary</td>
+                  <td>15</td>
+                  <td>3</td>
+                  <td>465.89</td>
+                </tr>
+                <tr>
+                  <td>NJFlatB06</td>
+                  <td>Boundary</td>
+                  <td>15</td>
+                  <td>8</td>
+                  <td>454.21</td>
+                </tr>
+                <tr>
+                  <td>NJFlatC01</td>
+                  <td>Coverage</td>
+                  <td>5</td>
+                  <td>8</td>
+                  <td>805.65</td>
+                </tr>
+                <tr>
+                  <td>NJFlatC02</td>
+                  <td>Coverage</td>
+                  <td>10</td>
+                  <td>3</td>
+                  <td>801.17</td>
+                </tr>
+                <tr>
+                  <td>NJFlatC03</td>
+                  <td>Coverage</td>
+                  <td>10</td>
+                  <td>8</td>
+                  <td>798.96</td>
+                </tr>
+                <tr>
+                  <td>NJFlatC04</td>
+                  <td>Coverage</td>
+                  <td>15</td>
+                  <td>3</td>
+                  <td>822.23</td>
+                </tr>
+
+                <!-- Hilly Farmland -->
+                <tr>
+                  <td rowspan="12"><strong>Hilly Farmland</strong></td>
+                  <td>NJHillB01</td>
+                  <td>Boundary</td>
+                  <td>8</td>
+                  <td>3</td>
+                  <td>490.61</td>
+                </tr>
+                <tr>
+                  <td>NJHillB02</td>
+                  <td>Boundary</td>
+                  <td>8</td>
+                  <td>8</td>
+                  <td>493.07</td>
+                </tr>
+                <tr>
+                  <td>NJHillB03</td>
+                  <td>Boundary</td>
+                  <td>13</td>
+                  <td>3</td>
+                  <td>480.98</td>
+                </tr>
+                <tr>
+                  <td>NJHillB04</td>
+                  <td>Boundary</td>
+                  <td>13</td>
+                  <td>8</td>
+                  <td>484.60</td>
+                </tr>
+                <tr>
+                  <td>NJHillB05</td>
+                  <td>Boundary</td>
+                  <td>18</td>
+                  <td>3</td>
+                  <td>483.84</td>
+                </tr>
+                <tr>
+                  <td>NJHillB06</td>
+                  <td>Boundary</td>
+                  <td>18</td>
+                  <td>8</td>
+                  <td>488.41</td>
+                </tr>
+                <tr>
+                  <td>NJHillC01</td>
+                  <td>Coverage</td>
+                  <td>8</td>
+                  <td>3</td>
+                  <td>776.47</td>
+                </tr>
+                <tr>
+                  <td>NJHillC02</td>
+                  <td>Coverage</td>
+                  <td>8</td>
+                  <td>8</td>
+                  <td>783.31</td>
+                </tr>
+                <tr>
+                  <td>NJHillC03</td>
+                  <td>Coverage</td>
+                  <td>13</td>
+                  <td>3</td>
+                  <td>761.55</td>
+                </tr>
+                <tr>
+                  <td>NJHillC04</td>
+                  <td>Coverage</td>
+                  <td>13</td>
+                  <td>8</td>
+                  <td>768.14</td>
+                </tr>
+                <tr>
+                  <td>NJHillC05</td>
+                  <td>Coverage</td>
+                  <td>18</td>
+                  <td>3</td>
+                  <td>756.07</td>
+                </tr>
+                <tr>
+                  <td>NJHillC06</td>
+                  <td>Coverage</td>
+                  <td>18</td>
+                  <td>8</td>
+                  <td>769.94</td>
+                </tr>
+
+                <!-- Terraced Farmland -->
+                <tr>
+                  <td rowspan="11"><strong>Terraced Farmland</strong></td>
+                  <td>NJTerrB01</td>
+                  <td>Boundary</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>204.91</td>
+                </tr>
+                <tr>
+                  <td>NJTerrB02</td>
+                  <td>Boundary</td>
+                  <td>6</td>
+                  <td>3</td>
+                  <td>207.21</td>
+                </tr>
+                <tr>
+                  <td>NJTerrB03</td>
+                  <td>Boundary</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>209.71</td>
+                </tr>
+                <tr>
+                  <td>NJTerrB04</td>
+                  <td>Boundary</td>
+                  <td>9</td>
+                  <td>3</td>
+                  <td>211.95</td>
+                </tr>
+                <tr>
+                  <td>NJTerrB05</td>
+                  <td>Boundary</td>
+                  <td>9</td>
+                  <td>6</td>
+                  <td>215.72</td>
+                </tr>
+                <tr>
+                  <td>NJTerrC01</td>
+                  <td>Coverage</td>
+                  <td>3</td>
+                  <td>3</td>
+                  <td>311.23</td>
+                </tr>
+                <tr>
+                  <td>NJTerrC02</td>
+                  <td>Coverage</td>
+                  <td>3</td>
+                  <td>6</td>
+                  <td>307.53</td>
+                </tr>
+                <tr>
+                  <td>NJTerrC03</td>
+                  <td>Coverage</td>
+                  <td>6</td>
+                  <td>3</td>
+                  <td>311.24</td>
+                </tr>
+                <tr>
+                  <td>NJTerrC04</td>
+                  <td>Coverage</td>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>300.84</td>
+                </tr>
+                <tr>
+                  <td>NJTerrC05</td>
+                  <td>Coverage</td>
+                  <td>9</td>
+                  <td>3</td>
+                  <td>313.64</td>
+                </tr>
+                <tr>
+                  <td>NJTerrC06</td>
+                  <td>Coverage</td>
+                  <td>9</td>
+                  <td>6</td>
+                  <td>317.48</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Calibration -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Calibration</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <!-- UAV Images -->
+          <div class="columns is-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
+            <div class="column is-half">
+              <figure class="image">
+                <img src="./imgs/FP300E_Sensor.png" alt="UAV Front View">
+              </figure>
+            </div>
+            <div class="column is-half">
+              <figure class="image">
+                <img src="./imgs/FP300E_TF.png" alt="UAV Side View">
+              </figure>
+            </div>
+          </div>
+
+          <div class="content has-text-justified">
+            <p>
+              Accurate LiDAR–Radar extrinsic calibration is crucial for multi-sensor fusion and consistent cross-modal
+              point cloud alignment. We formulate this calibration as a 3D–3D registration problem, aligning the
+              coordinate frames of both sensors within a unified reference. The CAD-derived translation and rotation
+              (see Figure above) serve as initial priors, which are subsequently refined through a manual calibration
+              procedure using multiple corner reflectors placed in the environment. This refinement significantly
+              improves alignment precision compared to the raw CAD configuration, providing a reliable geometric basis
+              for downstream multi-sensor SLAM.
+              <br>
+              The figure below is the visualization of the LiDAR and 4D Radar point clouds used to assess the extrinsic
+              calibration. Height-colored LiDAR points and white 4D Radar points are visualized in a common frame
+              following extrinsic alignment, with side and top-down views illustrating the spatial consistency across
+              scenarios
+            </p>
+          </div>
+
+          <!-- Extrinsic Calibration Validation -->
+          <div style="margin-top: 2rem; margin-bottom: 2rem;">
+            <!-- Grid Layout with Vertical Row Headers -->
+            <div style="display: flex; gap: 1rem;">
+              <!-- Row Headers (Vertical) -->
+              <div style="display: flex; flex-direction: column; justify-content: space-around; padding-top: 3rem;">
+                <div
+                  style="writing-mode: vertical-rl; transform: rotate(180deg); display: flex; align-items: center; justify-content: center; height: 250px;">
+                  <h5 class="title is-6"><strong>Ground</strong></h5>
+                </div>
+                <div
+                  style="writing-mode: vertical-rl; transform: rotate(180deg); display: flex; align-items: center; justify-content: center; height: 250px;">
+                  <h5 class="title is-6"><strong>Hovering</strong></h5>
+                </div>
+              </div>
+
+              <!-- Main Content Grid -->
+              <div style="flex: 1;">
+                <!-- Column Headers -->
+                <div class="columns is-multiline" style="margin-bottom: 1rem;">
+                  <div class="column is-one-third has-text-centered">
+                    <h5 class="title is-6"><strong>Scene</strong></h5>
+                  </div>
+                  <div class="column is-one-third has-text-centered">
+                    <h5 class="title is-6"><strong>Side View</strong></h5>
+                  </div>
+                  <div class="column is-one-third has-text-centered">
+                    <h5 class="title is-6"><strong>Top-down View</strong></h5>
+                  </div>
+                </div>
+
+                <!-- Row 1: Ground -->
+                <div class="columns is-multiline" style="margin-bottom: 0;">
+                  <div class="column is-one-third">
+                    <figure class="image">
+                      <img src="./imgs/Ground_Scene.jpg" alt="Ground Scene">
+                    </figure>
+                  </div>
+                  <div class="column is-one-third">
+                    <figure class="image">
+                      <img src="./imgs/Ground_Side.png" alt="Ground Side View">
+                    </figure>
+                  </div>
+                  <div class="column is-one-third">
+                    <figure class="image">
+                      <img src="./imgs/Ground_Topdown.png" alt="Ground Top-down View">
+                    </figure>
+                  </div>
+                </div>
+
+                <!-- Row 2: Hovering -->
+                <div class="columns is-multiline">
+                  <div class="column is-one-third">
+                    <figure class="image">
+                      <img src="./imgs/Hovering_Scene.jpg" alt="Hovering Scene">
+                    </figure>
+                  </div>
+                  <div class="column is-one-third">
+                    <figure class="image">
+                      <img src="./imgs/Hovering_Side.png" alt="Hovering Side View">
+                    </figure>
+                  </div>
+                  <div class="column is-one-third">
+                    <figure class="image">
+                      <img src="./imgs/Hovering_Topdown.png" alt="Hovering Top-down View">
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Mapping  -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Mapping Results</h2>
+      <div class="columns is-centered has-text-centered">
+        <!-- Mapping Results Table -->
+        <div style="margin-top: 2rem;">
+          <table class="table is-fullwidth is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th class="has-text-centered"><strong>Scene</strong></th>
+                <th class="has-text-centered"><strong>LiDAR</strong></th>
+                <th class="has-text-centered"><strong>4D Radar</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="has-text-centered" style="vertical-align: middle;"><strong>Flat Farmland</strong></td>
+                <td class="has-text-centered">
+                  <figure class="image">
+                    <img src="./imgs/Flat_LiDAR.png" alt="Flat Farmland LiDAR">
+                  </figure>
+                </td>
+                <td class="has-text-centered">
+                  <figure class="image">
+                    <img src="./imgs/Flat_Radar.png" alt="Flat Farmland 4D Radar">
+                  </figure>
+                </td>
+              </tr>
+              <tr>
+                <td class="has-text-centered" style="vertical-align: middle;"><strong>Hilly Farmland</strong></td>
+                <td class="has-text-centered">
+                  <figure class="image">
+                    <img src="./imgs/Hilly_LiDAR.png" alt="Hilly Farmland LiDAR">
+                  </figure>
+                </td>
+                <td class="has-text-centered">
+                  <figure class="image">
+                    <img src="./imgs/Hilly_Radar.png" alt="Hilly Farmland 4D Radar">
+                  </figure>
+                </td>
+              </tr>
+              <tr>
+                <td class="has-text-centered" style="vertical-align: middle;"><strong>Terraced Farmland</strong></td>
+                <td class="has-text-centered">
+                  <figure class="image">
+                    <img src="./imgs/Terr_LiDAR.png" alt="Terraced Farmland LiDAR">
+                  </figure>
+                </td>
+                <td class="has-text-centered">
+                  <figure class="image">
+                    <img src="./imgs/Terr_Radar.png" alt="Terraced Farmland 4D Radar">
+                  </figure>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+@misc{zhan2025agrilira4dmultisensoruavdataset,
+      title={AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultural Fields}, 
+      author={Zhihao Zhan and Yuhang Ming and Shaobin Li and Jie Yuan},
+      year={2025},
+      eprint={2512.01753},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2512.01753}, 
+}
+      </code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org/abs/2512.01753">
+          <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas"
+            data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
+            </path>
+          </svg><!-- <i class="fas fa-file-pdf"></i> Font Awesome fontawesome.com -->
+        </a>
+        <a class="icon-link" href="https://github.com/zhan994/AgriLiRa4D" disabled="">
+          <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab"
+            data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+            </path>
+          </svg>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              We borrow the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> for our website.
+              We sincerely appreciate Nerfies authors for their awesome templates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
