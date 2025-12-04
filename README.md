@@ -135,7 +135,7 @@ POINT_CLOUD_REGISTER_POINT_STRUCT(txg_radar::Point,
 
  ![](imgs/FLU_ENU.png)
 
-One of the three ground-truth representations (**FLU reference**) is provided in this repository, along with the sensor extrinsic parameters of this acquisition device.
+One of the three ground-truth representations (**FLU reference**) is provided using **TUM trajectory format** in this repository, along with the sensor extrinsic parameters of this acquisition device.
 
 **Note: When performing ground-truth analysis, the estimated state must first be gravity-aligned, and then the IMU's odometry must be transformed to the body's odometry based on an FLU reference!!!**
 
