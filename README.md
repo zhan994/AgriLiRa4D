@@ -1,11 +1,12 @@
 # AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultural Fields
 
-### [[Project Page](https://zhan994.github.io/AgriLiRa4D/)]  [[arXiv](https://arxiv.org/abs/2512.01753)] 
+[[Website]](https://zhan994.github.io/AgriLiRa4D/)
+[[arXiv]](https://arxiv.org/abs/2512.01753) 
+[[Hugging Face]](https://huggingface.co/datasets/zhan994/AgriLiRa4D)
 
-***Note: The dataset is currently being uploaded and will be available for download shortly!!!***
 
 ## Overview
-**AgriLiRa4D is a novel multi-modal dataset specifically developed for agricultural UAV SLAM research, incorporating LiDAR, 4D Radar, and IMU measurements collected using an agricultural UAV platform. Our dataset features high-precision ground truth trajectories obtained from a Fiber Optic Inertial Navigation System (FINS) module with a built-in Real-Time Kinematic (RTK) receiver (FINS\_RTK), ensuring centimeter-level position accuracy and high-fidelity orientation references. This work aims to advance the development of robust SLAM systems tailored for agricultural autonomous operations.**
+**AgriLiRa4D is a novel multi-modal dataset specifically developed for agricultural UAV SLAM research, incorporating LiDAR, 4D Radar, and IMU measurements collected using an agricultural UAV platform. Our dataset features high-precision ground truth trajectories obtained from a Fiber Optic Inertial Navigation System (FINS) module with a built-in Real-Time Kinematic (RTK) receiver (FINS_RTK), ensuring centimeter-level position accuracy and high-fidelity orientation references. This work aims to advance the development of robust SLAM systems tailored for agricultural autonomous operations.**
 
 **Flat Farmland**
 
@@ -22,6 +23,11 @@
 ![](imgs/Terr_LiDAR.gif) ![](imgs/Terr_Radar.gif) 
 
 
+## News
+
+- **Dec. 6, 2025** - [Dataset](https://huggingface.co/datasets/zhan994/AgriLiRa4D) upload is complete, and the [project page](https://zhan994.github.io/AgriLiRa4D/) as well as the [preprint paper](https://arxiv.org/abs/2512.01753) are now accessible.
+
+
 ## Mapping Results
 
 | Scene                 | LiDAR                    | 4D Radar                 |
@@ -32,6 +38,8 @@
 
 
 ## Quick Start
+
+**The dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/zhan994/AgriLiRa4D).**
 
 The 33 sequences of our dataset were collected across three representative farmland terrains—flat plains, hilly regions, and mountainous terraces—located in Nanjing, China. The dataset is organized into six sequence groups based on terrain type and scanning mode (*boundary* or *coverage*), namely *NJFlatB*, *NJFlatC*, *NJHillB*, *NJHillC*, *NJTerrB*, and *NJTerrC*.
 
