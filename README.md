@@ -201,10 +201,10 @@ V3D t_flu_body = t_flu_imu - R_flu_body * t_airbody_imu;
 
 ## Related Work
 
-1. [FAST-LIO2](https://github.com/zhan994/FAST_LIO): Fast Direct LiDAR-inertial Odometry
-2. [Faster-LIO](https://github.com/zhan994/faster-lio): Lightweight Tightly Coupled Lidar-inertial Odometry using Parallel Sparse Incremental Voxels
-3. [EKF-RIO](https://github.com/zhan994/rio): Radar Inertial Odometry With Online Calibration
-4. [GaRLIO](https://github.com/zhan994/GaRLIO): Gravity enhanced Radar-LiDAR-Inertial Odometry
+1. [FAST-LIO2: Fast Direct LiDAR-inertial Odometry](https://github.com/zhan994/FAST_LIO)
+2. [Faster-LIO: Lightweight Tightly Coupled Lidar-inertial Odometry using Parallel Sparse Incremental Voxels](https://github.com/zhan994/faster-lio)
+3. [EKF-RIO: Radar Inertial Odometry With Online Calibration](https://github.com/zhan994/rio)
+4. [GaRLIO: Gravity enhanced Radar-LiDAR-Inertial Odometry](https://github.com/zhan994/GaRLIO)
 
 
 ## Citation
