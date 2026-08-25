@@ -65,7 +65,7 @@
 
 ## Quick Start
 
-**The dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/zhan994/AgriLiRa4D).**
+**The dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/zhan994/AgriLiRa4D), while the extrinsic and ground-truth files can be availble at [dataset folder](https://github.com/zhan994/AgriLiRa4D/tree/main/dataset).**
 
 The 33 sequences of our dataset were collected across three representative farmland terrains—flat plains, hilly regions, and mountainous terraces—located in Nanjing, China. The dataset is organized into six sequence groups based on terrain type and scanning mode (*boundary* or *coverage*), namely *NJFlatB*, *NJFlatC*, *NJHillB*, *NJHillC*, *NJTerrB*, and *NJTerrC*.
 
