@@ -634,7 +634,7 @@
               The figure below is the visualization of the LiDAR and 4D Radar point clouds used to assess the extrinsic
               calibration. Height-colored LiDAR points and white 4D Radar points are visualized in a common frame
               following extrinsic alignment, with side and top-down views illustrating the spatial consistency across
-              scenarios
+              scenarios.
             </p>
           </div>
 
@@ -708,6 +708,58 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- IMU Allan Variance Calibration -->
+          <div style="margin-top: 3rem;">
+            <div class="content has-text-justified">
+              <p>
+                We characterized the stochastic noise of the LiDAR's built-in IMU using Allan variance analysis on a
+                stationary data sequence. The resulting noise density and bias random-walk parameters are listed below
+                and can be used directly to configure the IMU noise model in LiDAR–inertial, Radar–inertial, and
+                Radar–LiDAR–inertial estimators. The IMU measurements are published on
+                <code>/rslidar_imu_data</code> at 200 Hz.
+              </p>
+            </div>
+
+            <div class="table-container">
+              <table class="table is-fullwidth is-bordered is-striped is-hoverable">
+                <thead>
+                  <tr>
+                    <th class="has-text-centered"><strong>Sensor</strong></th>
+                    <th class="has-text-centered"><strong>Noise Density</strong></th>
+                    <th class="has-text-centered"><strong>Random Walk</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="has-text-centered">Accelerometer</td>
+                    <td class="has-text-centered">1.0309 &times; 10<sup>&minus;4</sup> m/s<sup>2</sup>/&radic;Hz</td>
+                    <td class="has-text-centered">2.0133 &times; 10<sup>&minus;5</sup> m/s<sup>3</sup>/&radic;Hz</td>
+                  </tr>
+                  <tr>
+                    <td class="has-text-centered">Gyroscope</td>
+                    <td class="has-text-centered">9.6675 &times; 10<sup>&minus;5</sup> rad/s/&radic;Hz</td>
+                    <td class="has-text-centered">1.6278 &times; 10<sup>&minus;5</sup> rad/s<sup>2</sup>/&radic;Hz</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Allan variance plots: accelerometer (left) and gyroscope (right). -->
+            <div class="columns is-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
+              <div class="column is-half">
+                <figure class="image">
+                  <img src="./imgs/IMU_Accel.png" alt="Accelerometer Allan variance analysis curves">
+                </figure>
+              </div>
+              <div class="column is-half">
+                <figure class="image">
+                  <img src="./imgs/IMU_Gyro.png" alt="Gyroscope Allan variance analysis curves">
+                </figure>
+              </div>
+            </div>
+
           </div>
 
         </div>
