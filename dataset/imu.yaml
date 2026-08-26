@@ -1,0 +1,11 @@
+#Accelerometer
+accelerometer_noise_density: 0.00010308925067315258 
+accelerometer_random_walk: 2.0132735687881945e-05 
+
+#Gyroscope
+gyroscope_noise_density: 9.667524628951837e-05 
+gyroscope_random_walk: 1.6278408066808885e-05 
+
+rostopic: '/rslidar_imu_data' 
+update_rate: 200 
+
