@@ -65,7 +65,12 @@
 
 ## Quick Start
 
-**The dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/zhan994/AgriLiRa4D), while the calibration and ground-truth files can be availble at [dataset folder](https://github.com/zhan994/AgriLiRa4D/tree/main/dataset).**
+**The dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/zhan994/AgriLiRa4D), while the calibration and ground-truth files are available in the [dataset folder](https://github.com/zhan994/AgriLiRa4D/tree/main/dataset).**
+
+The raw measurements are available both as ROS 1 bags and in a documented,
+ROS-independent representation. LiDAR and 4D Radar scans use timestamp-indexed
+ASCII PCD files, while IMU and FINS-RTK measurements use CSV. See the
+[open-format specification and conversion instructions](HUMAN_READABLE_FORMAT.md).
 
 The 33 sequences of our dataset were collected across three representative farmland terrains—flat plains, hilly regions, and mountainous terraces—located in Nanjing, China. The dataset is organized into six sequence groups based on terrain type and scanning mode (*boundary* or *coverage*), namely *NJFlatB*, *NJFlatC*, *NJHillB*, *NJHillC*, *NJTerrB*, and *NJTerrC*.
 
@@ -108,7 +113,9 @@ For all sequences except *NJTerrB* and *NJTerrC*, the UAV flew at a constant alt
 |                       | NJTerrC05 | coverage      | 9            | 3           | 313.64          |
 |                       | NJTerrC06 | coverage      | 9            | 6           | 317.48          |
 
-The Radar-LiDAR-Inertial sensor data is provided in ROS bag format. Each bag contains the following topics:
+The original Radar-LiDAR-Inertial sensor data is provided in ROS bag format, with
+an equivalent ASCII PCD/CSV release for non-ROS users. Each bag contains the
+following topics:
 
 | Sensor   | Module           | Topic Name             | Message Type              | Rate (Hz) |
 | :--------: | :----------------: | :----------------------: | :-------------------------: | :---------: |
