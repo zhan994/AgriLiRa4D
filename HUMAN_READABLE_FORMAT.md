@@ -83,8 +83,9 @@ python3 scripts/open_format_reader.py /path/to/open_format/NJFlatB01
 - Point-cloud coordinates and poses use metres.
 - Angular velocity uses radians per second and acceleration uses metres per
   second squared.
-- Orientations are Hamilton quaternions in `(x, y, z, w)` order.
-- Covariances are flattened in row-major order and retain the ROS message values.
+- FINS-RTK pose orientations are Hamilton quaternions in `(x, y, z, w)` order.
+- The LiDAR IMU recorded only three-axis angular velocity and linear
+  acceleration. Its empty orientation and covariance fields are not exported.
 - `timestamp` is the ROS message header time; `bag_timestamp` is the bag record
   time. LiDAR's per-point `timestamp` field is retained unchanged in seconds.
 - GNSS latitude and longitude use WGS84 degrees; altitude uses metres.

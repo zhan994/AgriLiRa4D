@@ -41,18 +41,8 @@ PCD_SCHEMA = {
 
 IMU_HEADER = (
     "timestamp", "bag_timestamp", "frame_id",
-    "orientation_x", "orientation_y", "orientation_z", "orientation_w",
-    "orientation_covariance_00", "orientation_covariance_01", "orientation_covariance_02",
-    "orientation_covariance_10", "orientation_covariance_11", "orientation_covariance_12",
-    "orientation_covariance_20", "orientation_covariance_21", "orientation_covariance_22",
     "angular_velocity_x", "angular_velocity_y", "angular_velocity_z",
-    "angular_velocity_covariance_00", "angular_velocity_covariance_01", "angular_velocity_covariance_02",
-    "angular_velocity_covariance_10", "angular_velocity_covariance_11", "angular_velocity_covariance_12",
-    "angular_velocity_covariance_20", "angular_velocity_covariance_21", "angular_velocity_covariance_22",
     "linear_acceleration_x", "linear_acceleration_y", "linear_acceleration_z",
-    "linear_acceleration_covariance_00", "linear_acceleration_covariance_01", "linear_acceleration_covariance_02",
-    "linear_acceleration_covariance_10", "linear_acceleration_covariance_11", "linear_acceleration_covariance_12",
-    "linear_acceleration_covariance_20", "linear_acceleration_covariance_21", "linear_acceleration_covariance_22",
 )
 
 POSE_HEADER = (
@@ -105,9 +95,7 @@ class Table:
 def imu_row(msg, bag_stamp):
     return (
         timestamp_text(msg.header.stamp), timestamp_text(bag_stamp), msg.header.frame_id,
-        *quaternion(msg.orientation), *msg.orientation_covariance,
-        *vector3(msg.angular_velocity), *msg.angular_velocity_covariance,
-        *vector3(msg.linear_acceleration), *msg.linear_acceleration_covariance,
+        *vector3(msg.angular_velocity), *vector3(msg.linear_acceleration),
     )
 
 
@@ -185,7 +173,7 @@ are Unix time in seconds with nine decimal places. Quaternions use `(x,y,z,w)`.
 | `lidar/` | One scan per timestamp-indexed ASCII PCD; `x,y,z` [m], `intensity`, `ring`, per-point `timestamp` [s] |
 | `radar/` | One scan per timestamp-indexed ASCII PCD; `x,y,z` [m], Doppler velocity [m/s], SNR [dB], RCS [m^2] |
 | `lidar_frames.csv`, `radar_frames.csv` | Ordered frame index, header/bag timestamps, frame, point count and relative file |
-| `imu.csv` | Orientation, angular velocity [rad/s], linear acceleration [m/s^2], and 3x3 covariances |
+| `imu.csv` | Recorded three-axis angular velocity [rad/s] and linear acceleration [m/s^2] |
 | `fins_rtk_pose_enu.csv`, `fins_rtk_pose_flu.csv` | FINS-RTK position [m] and orientation quaternion in the named reference frame |
 | `fins_rtk_llh.csv` | Recorded WGS84 latitude/longitude [deg] and altitude [m] |
 | `metadata.json` | Format version, source name, topic counts and time range |
