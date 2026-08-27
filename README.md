@@ -108,16 +108,16 @@ For all sequences except *NJTerrB* and *NJTerrC*, the UAV flew at a constant alt
 |                       | NJTerrC05 | coverage      | 9            | 3           | 313.64          |
 |                       | NJTerrC06 | coverage      | 9            | 6           | 317.48          |
 
-The Radar-LiDAR-Inertial sensor data is provided in ROS bag format. Each bag contains the following topics:
+Each sensor in AgriLiRa4D is presented with its associated ROS topic, message type, update rate, and ROS-independent data format.
 
-| Sensor   | Module           | Topic Name             | Message Type              | Rate (Hz) |
-| :--------: | :----------------: | :----------------------: | :-------------------------: | :---------: |
-| LiDAR    | Robosense Airy   | /rslidar_points        | sensor_msgs/PointCloud2   | 10        |
-| IMU      | Built-in (LiDAR) | /rslidar_imu_data      | sensor_msgs/IMU           | 200       |
-| 4D Radar | Mindcruise A1    | /radar_points          | sensor_msgs/PointCloud2   | 10        |
-| FINS_RTK | TJ-FINS70D       | /aircraft_pose_enu     | geometry_msgs/PoseStamped | 100       |
-|          |                  | /aircraft_pose_flu     | geometry_msgs/PoseStamped | 100       |
-|          |                  | /aircraft_position_llh | sensor_msgs/NavSatFix     | 100       |
+| Sensor   | Module           | Topic Name             | Message Type              | Rate (Hz) | Format |
+| :--------: | :----------------: | :----------------------: | :-------------------------: | :---------: | :--------: |
+| LiDAR    | Robosense Airy   | /rslidar_points        | sensor_msgs/PointCloud2   | 10        | ASCII PCD |
+| IMU      | Built-in (LiDAR) | /rslidar_imu_data      | sensor_msgs/IMU           | 200       | CSV |
+| 4D Radar | Mindcruise A1    | /radar_points          | sensor_msgs/PointCloud2   | 10        | ASCII PCD |
+| FINS_RTK | TJ-FINS70D       | /aircraft_pose_enu     | geometry_msgs/PoseStamped | 100       | CSV |
+|          |                  | /aircraft_pose_flu     | geometry_msgs/PoseStamped | 100       | CSV |
+|          |                  | /aircraft_position_llh | sensor_msgs/NavSatFix     | 100       | CSV |
 
 For `/rslidar_points`, pay attention to its point's timestamp: the per-point `timestamp` has a constant offset w.r.t. the message `header.stamp`, and its unit is **seconds (s)**.
 
