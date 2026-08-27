@@ -117,14 +117,14 @@ The original Radar-LiDAR-Inertial sensor data is provided in ROS bag format, wit
 an equivalent ASCII PCD/CSV release for non-ROS users. Each bag contains the
 following topics:
 
-| Sensor   | Module           | Topic Name             | Message Type              | Rate (Hz) |
-| :--------: | :----------------: | :----------------------: | :-------------------------: | :---------: |
-| LiDAR    | Robosense Airy   | /rslidar_points        | sensor_msgs/PointCloud2   | 10        |
-| IMU      | Built-in (LiDAR) | /rslidar_imu_data      | sensor_msgs/IMU           | 200       |
-| 4D Radar | Mindcruise A1    | /radar_points          | sensor_msgs/PointCloud2   | 10        |
-| FINS_RTK | TJ-FINS70D       | /aircraft_pose_enu     | geometry_msgs/PoseStamped | 100       |
-|          |                  | /aircraft_pose_flu     | geometry_msgs/PoseStamped | 100       |
-|          |                  | /aircraft_position_llh | sensor_msgs/NavSatFix     | 100       |
+| Sensor   | Module           | Topic Name             | Message Type              | Rate (Hz) | Format |
+| :--------: | :----------------: | :----------------------: | :-------------------------: | :---------: | :--------: |
+| LiDAR    | Robosense Airy   | /rslidar_points        | sensor_msgs/PointCloud2   | 10        | ASCII PCD |
+| IMU      | Built-in (LiDAR) | /rslidar_imu_data      | sensor_msgs/IMU           | 200       | CSV |
+| 4D Radar | Mindcruise A1    | /radar_points          | sensor_msgs/PointCloud2   | 10        | ASCII PCD |
+| FINS_RTK | TJ-FINS70D       | /aircraft_pose_enu     | geometry_msgs/PoseStamped | 100       | CSV |
+|          |                  | /aircraft_pose_flu     | geometry_msgs/PoseStamped | 100       | CSV |
+|          |                  | /aircraft_position_llh | sensor_msgs/NavSatFix     | 100       | CSV |
 
 For `/rslidar_points`, pay attention to its point's timestamp: the per-point `timestamp` has a constant offset w.r.t. the message `header.stamp`, and its unit is **seconds (s)**.
 
