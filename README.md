@@ -70,7 +70,7 @@
 The raw measurements are available both as ROS 1 bags and in a documented,
 ROS-independent representation. LiDAR and 4D Radar scans use timestamp-indexed
 ASCII PCD files, while IMU and FINS-RTK measurements use CSV. See the
-[open-format specification and conversion instructions](HUMAN_READABLE_FORMAT.md).
+[open-format specification and conversion instructions](scripts/HUMAN_READABLE_FORMAT.md).
 
 The 33 sequences of our dataset were collected across three representative farmland terrains—flat plains, hilly regions, and mountainous terraces—located in Nanjing, China. The dataset is organized into six sequence groups based on terrain type and scanning mode (*boundary* or *coverage*), namely *NJFlatB*, *NJFlatC*, *NJHillB*, *NJHillC*, *NJTerrB*, and *NJTerrC*.
 
