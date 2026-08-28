@@ -2,7 +2,6 @@
 
 ***while the calibration and ground-truth files are alse available in the [dataset folder](https://github.com/zhan994/AgriLiRa4D/tree/main/dataset).***
 
----
 
 <div align="left">
     <img src="https://cultofthepartyparrot.com/parrots/hd/githubparrot.gif" width="25" height="25"/>
