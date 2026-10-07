@@ -1,7 +1,5 @@
 # AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultural Fields
 
-This is the repository that contains tools for the [website](https://zhan994.github.io/AgriLiRa4D/).
-
 If you find our dataset useful for your work please cite:
 ```
 @misc{zhan2025agrilira4dmultisensoruavdataset,
