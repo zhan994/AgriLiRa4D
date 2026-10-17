@@ -128,6 +128,8 @@ following topics:
 
 For `/rslidar_points`, pay attention to its point's timestamp: the per-point `timestamp` has a constant offset w.r.t. the message `header.stamp`, and its unit is **seconds (s)**.
 
+For `/rslidar_imu_data`, its acceleration values are expressed in units of $g$ ($1g = 9.80665~\mathrm{m/s^2}$).
+
 For `/rslidar_points` and `/radar_points`, use custom PCL PointT type:
 
 ```cpp
