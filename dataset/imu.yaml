@@ -1,6 +1,6 @@
 #Accelerometer
-accelerometer_noise_density: 0.00010308925067315258 
-accelerometer_random_walk: 2.0132735687881945e-05 
+accelerometer_noise_density: 0.0010109601972942337 
+accelerometer_random_walk: 0.00019743469191084792 
 
 #Gyroscope
 gyroscope_noise_density: 9.667524628951837e-05 
