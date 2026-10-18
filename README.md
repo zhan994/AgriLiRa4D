@@ -32,21 +32,22 @@
 
 
 ## Overview
-**AgriLiRa4D is a novel multi-modal dataset specifically developed for agricultural UAV SLAM research, incorporating LiDAR, 4D Radar, and IMU measurements collected using an agricultural UAV platform. Our dataset features high-precision ground truth trajectories obtained from a Fiber Optic Inertial Navigation System (FINS) module with a built-in Real-Time Kinematic (RTK) receiver (FINS-RTK), ensuring centimeter-level position accuracy and high-fidelity orientation references. This work aims to advance the development of robust SLAM systems tailored for agricultural autonomous operations.**
+***AgriLiRa4D is a novel multi-modal dataset specifically developed for agricultural UAV SLAM research, incorporating lidar, 4D radar, and IMU measurements collected using an agricultural UAV platform. Our dataset features high-precision ground truth trajectories obtained from a fiber-optic inertial navigation system (FINS) module with a built-in real-time kinematic (RTK) receiver (FINS-RTK), ensuring centimeter-level position accuracy and high-fidelity orientation references. This work aims to advance the development of robust SLAM systems tailored for agricultural autonomous operations.***
+
 
 **Flat Farmland**
 
-![](imgs/Flat_LiDAR.gif) ![](imgs/Flat_Radar.gif) 
+![](assets/Flat_LiDAR.gif) ![](assets/Flat_Radar.gif) 
 
 
 **Hilly Farmland**
 
-![](imgs/Hilly_LiDAR.gif) ![](imgs/Hilly_Radar.gif) 
+![](assets/Hilly_LiDAR.gif) ![](assets/Hilly_Radar.gif) 
 
 
 **Terraced Farmland**
 
-![](imgs/Terr_LiDAR.gif) ![](imgs/Terr_Radar.gif) 
+![](assets/Terr_LiDAR.gif) ![](assets/Terr_Radar.gif) 
 
 
 ## News
@@ -56,25 +57,25 @@
 
 ## Mapping Results
 
-| Scene                 | LiDAR                    | 4D Radar                 |
+| Scene                 | Lidar                    | 4D Radar                 |
 | --------------------- | ------------------------ | ------------------------ |
-| **Flat Farmland**     | ![](imgs/Flat_LiDAR.png) | ![](imgs/Flat_Radar.png) |
-| **Hilly Farmland**    | ![](imgs/Hilly_LiDAR.png) | ![](imgs/Hilly_Radar.png) |
-| **Terraced Farmland** | ![](imgs/Terr_LiDAR.png) | <img src="imgs/Terr_Radar.png"  /> |
+| **Flat Farmland**     | ![](assets/Flat_LiDAR.png) | ![](assets/Flat_Radar.png) |
+| **Hilly Farmland**    | ![](assets/Hilly_LiDAR.png) | ![](assets/Hilly_Radar.png) |
+| **Terraced Farmland** | ![](assets/Terr_LiDAR.png) | <img src="assets/Terr_Radar.png"  /> |
 
 
 ## Quick Start
 
-**The dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/zhan994/AgriLiRa4D), while the calibration and ground-truth files are available in the [dataset folder](https://github.com/zhan994/AgriLiRa4D/tree/main/dataset).**
+***The dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/zhan994/AgriLiRa4D), while the calibration and ground-truth files are available in the [dataset folder](https://github.com/zhan994/AgriLiRa4D/tree/main/dataset).***
 
 The raw measurements are available both as ROS 1 bags and in a documented,
-ROS-independent representation. LiDAR and 4D Radar scans use timestamp-indexed
+ROS-independent representation. Lidar and 4D radar scans use timestamp-indexed
 ASCII PCD files, while IMU and FINS-RTK measurements use CSV. See the
 [open-format specification and conversion instructions](scripts/HUMAN_READABLE_FORMAT.md).
 
 The 33 sequences of our dataset were collected across three representative farmland terrains—flat plains, hilly regions, and mountainous terraces—located in Nanjing, China. The dataset is organized into six sequence groups based on terrain type and scanning mode (*boundary* or *coverage*), namely *NJFlatB*, *NJFlatC*, *NJHillB*, *NJHillC*, *NJTerrB*, and *NJTerrC*.
 
-For all sequences except *NJTerrB* and *NJTerrC*, the UAV flew at a constant altitude with respect to the take-off point. In contrast, for the mountainous-terrain sequences *NJTerrB* and *NJTerrC*, the UAV maintained a fixed height Above Ground Level (AGL) to ensure flight safety and stable sensor coverage over rapidly varying elevation. Multiple combinations of flight altitudes and speeds were employed to introduce different levels of SLAM difficulty. Each sequence additionally begins with a short stationary or hovering segment to facilitate IMU initialization.
+For all sequences except *NJTerrB* and *NJTerrC*, the UAV flew at a constant altitude with respect to the take-off point. In contrast, for the mountainous-terrain sequences *NJTerrB* and *NJTerrC*, the UAV maintained a fixed height above ground level (AGL) to ensure flight safety and stable sensor coverage over rapidly varying elevation. Multiple combinations of flight altitudes and speeds were employed to introduce different levels of SLAM difficulty. Each sequence additionally begins with a short stationary or hovering segment to facilitate IMU initialization.
 
 
 | Scene                 | Sequence  | Scanning Mode | Altitude (m) | Speed (m/s) | Path Length (m) |
@@ -113,14 +114,14 @@ For all sequences except *NJTerrB* and *NJTerrC*, the UAV flew at a constant alt
 |                       | NJTerrC05 | coverage      | 9            | 3           | 313.64          |
 |                       | NJTerrC06 | coverage      | 9            | 6           | 317.48          |
 
-The original Radar-LiDAR-Inertial sensor data is provided in ROS bag format, with
+The original radar-lidar-inertial sensor data is provided in ROS bag format, with
 an equivalent ASCII PCD/CSV release for non-ROS users. Each bag contains the
 following topics:
 
 | Sensor   | Module           | Topic Name             | Message Type              | Rate (Hz) | Format |
 | :--------: | :----------------: | :----------------------: | :-------------------------: | :---------: | :--------: |
-| LiDAR    | Robosense Airy   | /rslidar_points        | sensor_msgs/PointCloud2   | 10        | ASCII PCD |
-| IMU      | Built-in (LiDAR) | /rslidar_imu_data      | sensor_msgs/IMU           | 200       | CSV |
+| Lidar    | Robosense Airy   | /rslidar_points        | sensor_msgs/PointCloud2   | 10        | ASCII PCD |
+| IMU      | Built-in (Lidar) | /rslidar_imu_data      | sensor_msgs/IMU           | 200       | CSV |
 | 4D Radar | Mindcruise A1    | /radar_points          | sensor_msgs/PointCloud2   | 10        | ASCII PCD |
 | FINS-RTK | TJ-FINS70D       | /aircraft_pose_enu     | geometry_msgs/PoseStamped | 100       | CSV |
 |          |                  | /aircraft_pose_flu     | geometry_msgs/PoseStamped | 100       | CSV |
@@ -128,7 +129,7 @@ following topics:
 
 For `/rslidar_points`, pay attention to its point's timestamp: the per-point `timestamp` has a constant offset w.r.t. the message `header.stamp`, and its unit is **seconds (s)**.
 
-For `/rslidar_imu_data`, its acceleration values are expressed in units of $g$ ($1g = 9.80665~\mathrm{m/s^2}$).
+For `/rslidar_imu_data`, its acceleration values are expressed in units of $\mathrm{g}$, where $1~\mathrm{g} = 9.80665~\mathrm{m/s^2}$.
 
 For `/rslidar_points` and `/radar_points`, use custom PCL PointT type:
 
@@ -178,11 +179,12 @@ POINT_CLOUD_REGISTER_POINT_STRUCT(txg_radar::Point,
 
 ## Ground Truth
 
- ![](imgs/FLU_ENU.png)
+ ![](assets/FLU_ENU.png)
 
+The physical lever arm between the FINS-RTK and the lidar-integrated IMU has already been compensated during ground-truth preprocessing, so all released ground-truth representations (LLH, ENU, and FLU) refer to the IMU origin, and the zero IMU-to-body translation does not imply a zero physical lever arm.
 One of the three ground-truth representations (**FLU reference**) is provided using **TUM trajectory format** in this repository, along with the sensor extrinsic parameters of this acquisition device.
 
-**Note: When performing ground-truth analysis, the estimated state must first be gravity-aligned, and then the IMU's odometry must be transformed to the body's odometry based on an FLU reference!!!**
+***Note: When performing ground-truth analysis, the estimated state must first be gravity-aligned, and then the IMU's odometry must be transformed to the body's odometry based on an FLU reference !!!***
 
 Here is an example about how to convert gravity-aligned IMU's odometry obtained from a LIO/RIO/RLIO system into body's odometry based on an FLU reference.
 
