@@ -6,7 +6,7 @@
   <meta name="description"
     content="AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultural Fields">
   <meta name="keywords"
-    content="Dataset, Aerial Robots, Multi-Sensor Fusion, Agricultural Fields, Simultaneous Localization and Mapping, 4D Radar, LiDAR, Inertial Measurement Unit.">
+    content="Dataset, Aerial Robots, Multi-Sensor Fusion, Agricultural Fields, Simultaneous Localization and Mapping, 4D Radar, Lidar, Inertial Measurement Unit.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AgriLiRa4D: A Multi-Sensor UAV Dataset for Robust SLAM in Challenging Agricultural Fields</title>
 
@@ -187,7 +187,7 @@
             <div
               style="display: flex; flex-direction: column; justify-content: space-around; width: 80px; flex-shrink: 0;">
               <div style="display: flex; align-items: center; justify-content: center; flex: 1;">
-                <h4 class="title is-5" style="writing-mode: vertical-rl; transform: rotate(180deg); margin: 0;">LiDAR
+                <h4 class="title is-5" style="writing-mode: vertical-rl; transform: rotate(180deg); margin: 0;">Lidar
                 </h4>
               </div>
               <div style="display: flex; align-items: center; justify-content: center; flex: 1;">
@@ -199,15 +199,15 @@
             <!-- GIF Grid -->
             <div style="flex: 1;">
               <div class="columns is-multiline" style="margin: 0;">
-                <!-- Row 1: LiDAR -->
+                <!-- Row 1: Lidar -->
                 <div class="column is-one-third">
-                  <img src="./imgs/Flat_LiDAR.gif" alt="Flat Farmland LiDAR" style="width: 100%;">
+                  <img src="./imgs/Flat_LiDAR.gif" alt="Flat Farmland Lidar" style="width: 100%;">
                 </div>
                 <div class="column is-one-third">
-                  <img src="./imgs/Hilly_LiDAR.gif" alt="Hilly Farmland LiDAR" style="width: 100%;">
+                  <img src="./imgs/Hilly_LiDAR.gif" alt="Hilly Farmland Lidar" style="width: 100%;">
                 </div>
                 <div class="column is-one-third">
-                  <img src="./imgs/Terr_LiDAR.gif" alt="Terraced Farmland LiDAR" style="width: 100%;">
+                  <img src="./imgs/Terr_LiDAR.gif" alt="Terraced Farmland Lidar" style="width: 100%;">
                 </div>
 
                 <!-- Row 2: 4D Radar -->
@@ -236,21 +236,24 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Multi-sensor Simultaneous Localization and Mapping (SLAM) is essential for Unmanned Aerial Vehicles (UAVs)
-              performing agricultural tasks such as spraying, surveying, and inspection. However, real-world,
-              multi-modal agricultural UAV datasets that enable research on robust operation remain scarce. To address
-              this gap, we present AgriLiRa4D, a multi-modal UAV dataset designed for challenging outdoor agricultural
-              environments. AgriLiRa4D spans three representative farmland types—flat, hilly, and terraced—and includes
-              both boundary and coverage operation modes, resulting in six flight sequence groups. The dataset provides
-              high-accuracy ground-truth trajectories from a Fiber Optic Inertial Navigation System with Real-Time
-              Kinematic capability (FINS-RTK), along with synchronized measurements from a 3D LiDAR, a 4D Radar, and an
-              Inertial Measurement Unit (IMU), accompanied by complete intrinsic and extrinsic calibrations.
+              Multi-sensor simultaneous localization and mapping (SLAM) is essential for unmanned aerial vehicles (UAVs)
+              performing agricultural tasks such as spraying, surveying, and inspection.
+              However, real-world, multi-modal agricultural UAV datasets that enable research on robust operation remain
+              scarce.
+              To address this gap, we present AgriLiRa4D, a multi-modal UAV dataset designed for challenging outdoor
+              agricultural environments.
+              AgriLiRa4D spans three representative farmland types—flat, hilly, and terraced—and includes both boundary
+              and coverage operation modes, resulting in six flight sequence groups.
+              The dataset provides high-accuracy ground-truth trajectories from a fiber-optic inertial navigation system
+              with real-time kinematic capability (FINS-RTK), along with synchronized measurements from a 3D lidar, a 4D
+              radar, and an inertial measurement unit (IMU), accompanied by complete intrinsic and extrinsic
+              calibrations.
               Leveraging its comprehensive sensor suite and diverse real-world scenarios, AgriLiRa4D supports diverse
               SLAM and localization studies and enables rigorous robustness evaluation against low-texture crops,
-              repetitive patterns, dynamic vegetation, and other challenges of real agricultural environments. To
-              further demonstrate its utility, we benchmark four state-of-the-art multi-sensor SLAM algorithms across
-              different sensor combinations, highlighting the difficulty of the proposed sequences and the necessity of
-              multi-modal approaches for reliable UAV localization.
+              repetitive patterns, dynamic vegetation, and other challenges of real agricultural environments.
+              To further demonstrate its utility, we benchmark four state-of-the-art multi-sensor SLAM algorithms across
+              different sensor combinations, highlighting the difficulty of the proposed sequences and the challenges of
+              effectively exploiting complementary sensing modalities for reliable UAV localization.
               By filling a critical gap in agricultural SLAM datasets, AgriLiRa4D provides a valuable benchmark for the
               research community and contributes to advancing autonomous navigation technologies for agricultural UAVs.
             </p>
@@ -278,7 +281,7 @@
               <br>
               For all sequences except <em>NJTerrB</em> and <em>NJTerrC</em>, the UAV flew at a constant altitude with
               respect to the take-off point. In contrast, for the mountainous-terrain sequences <em>NJTerrB</em> and
-              <em>NJTerrC</em>, the UAV maintained a fixed height Above Ground Level (AGL) to ensure flight safety and
+              <em>NJTerrC</em>, the UAV maintained a fixed height above ground level (AGL) to ensure flight safety and
               stable sensor coverage over rapidly varying elevation. Multiple combinations of flight altitudes and
               speeds were employed to introduce different levels of SLAM difficulty. Each sequence additionally begins
               with a short stationary or hovering segment to facilitate IMU initialization.
@@ -623,7 +626,7 @@
 
           <div class="content has-text-justified">
             <p>
-              Accurate LiDAR–Radar extrinsic calibration is crucial for multi-sensor fusion and consistent cross-modal
+              Accurate lidar–radar extrinsic calibration is crucial for multi-sensor fusion and consistent cross-modal
               point cloud alignment. We formulate this calibration as a 3D–3D registration problem, aligning the
               coordinate frames of both sensors within a unified reference. The CAD-derived translation and rotation
               (see Figure above) serve as initial priors, which are subsequently refined through a manual calibration
@@ -644,9 +647,10 @@
               </div>
               <div class="column is-half has-text-centered">
                 <figure class="image">
-                  <img src="./imgs/Calib_PCD.png" alt="LiDAR-Radar alignment after refinement">
+                  <img src="./imgs/Calib_PCD.png" alt="Lidar-radar alignment after refinement">
                 </figure>
-                <h5 class="title is-6" style="margin-top: 0.75rem;"><strong>LiDAR-Radar alignment after refinement</strong></h5>
+                <h5 class="title is-6" style="margin-top: 0.75rem;"><strong>Lidar-radar alignment after
+                    refinement</strong></h5>
               </div>
             </div>
           </div>
@@ -654,8 +658,8 @@
 
           <div class="content has-text-justified">
             <p>
-              The figure below is the visualization of the LiDAR and 4D Radar point clouds used to assess the extrinsic
-              calibration. Height-colored LiDAR points and white 4D Radar points are visualized in a common frame
+              The figure below is the visualization of the lidar and 4D radar point clouds used to assess the extrinsic
+              calibration. Height-colored lidar points and white 4D radar points are visualized in a common frame
               following extrinsic alignment, with side and top-down views illustrating the spatial consistency across
               scenarios.
             </p>
@@ -737,10 +741,10 @@
           <div style="margin-top: 3rem;">
             <div class="content has-text-justified">
               <p>
-                We characterized the stochastic noise of the LiDAR's built-in IMU using Allan variance analysis on a
+                We characterized the stochastic noise of the lidar's built-in IMU using Allan variance analysis on a
                 stationary data sequence. The resulting noise density and bias random-walk parameters are listed below
-                and can be used directly to configure the IMU noise model in LiDAR–inertial, Radar–inertial, and
-                Radar–LiDAR–inertial estimators. The IMU measurements are published on
+                and can be used directly to configure the IMU noise model in lidar–inertial, radar–inertial, and
+                radar–lidar–inertial estimators. The IMU measurements are published on
                 <code>/rslidar_imu_data</code> at 200 Hz.
               </p>
             </div>
@@ -801,7 +805,7 @@
             <thead>
               <tr>
                 <th class="has-text-centered"><strong>Scene</strong></th>
-                <th class="has-text-centered"><strong>LiDAR</strong></th>
+                <th class="has-text-centered"><strong>Lidar</strong></th>
                 <th class="has-text-centered"><strong>4D Radar</strong></th>
               </tr>
             </thead>
@@ -810,7 +814,7 @@
                 <td class="has-text-centered" style="vertical-align: middle;"><strong>Flat Farmland</strong></td>
                 <td class="has-text-centered">
                   <figure class="image">
-                    <img src="./imgs/Flat_LiDAR.png" alt="Flat Farmland LiDAR">
+                    <img src="./imgs/Flat_LiDAR.png" alt="Flat Farmland Lidar">
                   </figure>
                 </td>
                 <td class="has-text-centered">
@@ -823,7 +827,7 @@
                 <td class="has-text-centered" style="vertical-align: middle;"><strong>Hilly Farmland</strong></td>
                 <td class="has-text-centered">
                   <figure class="image">
-                    <img src="./imgs/Hilly_LiDAR.png" alt="Hilly Farmland LiDAR">
+                    <img src="./imgs/Hilly_LiDAR.png" alt="Hilly Farmland Lidar">
                   </figure>
                 </td>
                 <td class="has-text-centered">
@@ -836,7 +840,7 @@
                 <td class="has-text-centered" style="vertical-align: middle;"><strong>Terraced Farmland</strong></td>
                 <td class="has-text-centered">
                   <figure class="image">
-                    <img src="./imgs/Terr_LiDAR.png" alt="Terraced Farmland LiDAR">
+                    <img src="./imgs/Terr_LiDAR.png" alt="Terraced Farmland Lidar">
                   </figure>
                 </td>
                 <td class="has-text-centered">
